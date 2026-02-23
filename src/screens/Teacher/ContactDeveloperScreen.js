@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Linking, ActivityIndicator, Alert, Platform } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Linking, ActivityIndicator, Alert } from 'react-native';
 import apiClient from '../../api/client';
 import { AuthContext } from '../../context/AuthContext'; // Role check karne ke liye
 
-const API_BASE = Platform.OS === 'web' ? 'http://localhost:5000' : 'http://10.54.31.32:5000';
+const API_BASE = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
 
 const ContactDeveloperScreen = () => {
     const { user } = useContext(AuthContext); // Check karne ke liye ki user TEACHER hai ya STUDENT

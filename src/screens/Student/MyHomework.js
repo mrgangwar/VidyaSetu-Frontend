@@ -1,13 +1,16 @@
 import React, { useState, useCallback } from 'react';
 import { 
     View, Text, FlatList, StyleSheet, TouchableOpacity, 
-    ActivityIndicator, Alert, RefreshControl, SafeAreaView, Vibration, Platform
+    ActivityIndicator, Alert, RefreshControl, SafeAreaView, Vibration
 } from 'react-native';
 import * as FileSystem from 'expo-file-system/legacy'; 
 import * as Sharing from 'expo-sharing';
 import { Ionicons } from '@expo/vector-icons';
 import apiClient from '../../api/client';
 import { useFocusEffect } from '@react-navigation/native';
+
+// Get API base URL from environment variable
+const SERVER_URL = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
 
 // Standardized Design Palette
 const COLORS = {
@@ -25,9 +28,7 @@ export default function MyHomework() {
     const [homeworks, setHomeworks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
-    const [downloading, setDownloading] = useState(null);
-
-    const SERVER_URL = Platform.OS === 'web' ? 'http://localhost:5000' : 'http://10.54.31.32:5000'; 
+    const [downloading, setDownloading] = useState(null); 
 
     const fetchHomework = async () => {
         try {

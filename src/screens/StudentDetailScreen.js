@@ -10,8 +10,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { width } = Dimensions.get('window');
 
-// Dynamic base URL for API calls
-const API_BASE_URL = Platform.OS === 'web' ? 'http://localhost:5000' : 'http://10.54.31.32:5000';
+// Get API base URL from environment variable
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
 
 export default function StudentDetailScreen({ route }) {
     const { studentId } = route.params; 

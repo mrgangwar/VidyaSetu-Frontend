@@ -11,6 +11,9 @@ import { AuthContext } from '../context/AuthContext';
 import apiClient from '../api/client';
 import { useFocusEffect } from '@react-navigation/native';
 
+// Get API base URL from environment variable
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
+
 const { width } = Dimensions.get('window');
 
 const COLORS = {
@@ -125,7 +128,7 @@ const StudentDashboard = ({ navigation }) => {
                         >
                             <Image
                                 source={data?.profile?.profilePhoto
-                                    ? { uri: data.profile.profilePhoto.startsWith('http') ? data.profile.profilePhoto : `http://10.54.31.32:5000/${data.profile.profilePhoto.replace(/\\/g, '/').replace(/^\//, '')}` }
+                                    ? { uri: data.profile.profilePhoto.startsWith('http') ? data.profile.profilePhoto : `https://vidyasetu-backend-n7ob.onrender.com/${data.profile.profilePhoto.replace(/\\/g, '/').replace(/^\//, '')}` }
                                     : { uri: `https://ui-avatars.com/api/?name=${data?.profile?.name}&background=2563EB&color=fff` }}
                                 style={styles.profileImg}
                                 onLoadEnd={() => setImgLoading(false)}

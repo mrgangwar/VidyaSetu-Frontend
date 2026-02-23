@@ -8,19 +8,19 @@
       "developmentClient": true,
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://vidyasetu-backend-6lxi.onrender.com/api"
+        "EXPO_PUBLIC_API_URL": "https://vidyasetu-backend-n7ob.onrender.com/api"
       }
     },
     "preview": {
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://vidyasetu-backend-6lxi.onrender.com/api"
+        "EXPO_PUBLIC_API_URL": "https://vidyasetu-backend-n7ob.onrender.com/api"
       }
     },
     "production": {
       "autoIncrement": true,
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://vidyasetu-backend-6lxi.onrender.com/api"
+        "EXPO_PUBLIC_API_URL": "https://vidyasetu-backend-n7ob.onrender.com/api"
       }
     }
   },

@@ -8,6 +8,9 @@ import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
 import apiClient from '../../api/client';
 
+// Get API base URL from environment variable
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
+
 const EditTeacherScreen = ({ route, navigation }) => {
     const { teacher } = route.params;
     const [loading, setLoading] = useState(false);
@@ -81,7 +84,7 @@ const EditTeacherScreen = ({ route, navigation }) => {
         }
     };
 
-    const baseUrl = Platform.OS === 'web' ? 'http://localhost:5000/' : 'http://10.54.31.32:5000/';
+    const baseUrl = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
     const currentProfilePic = teacher.profilePhoto 
         ? { uri: teacher.profilePhoto.startsWith('http') ? teacher.profilePhoto : `${baseUrl}${teacher.profilePhoto.replace(/\\/g, '/')}` }
         : { uri: `https://ui-avatars.com/api/?name=${teacher.name}&background=4F46E5&color=fff` };

@@ -9,8 +9,8 @@ import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
-// Dynamic base URL
-const API_BASE = Platform.OS === 'web' ? 'http://localhost:5000' : 'http://10.54.31.32:5000';
+// Get API base URL from environment variable
+const API_BASE = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
 
 // --- GLOBAL DESIGN SYSTEM CONSTANTS ---
 const COLORS = {

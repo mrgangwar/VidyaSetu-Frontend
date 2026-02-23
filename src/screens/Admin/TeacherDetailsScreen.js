@@ -6,6 +6,9 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import apiClient from '../../api/client';
 
+// Get API base URL from environment variable
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
+
 const { width } = Dimensions.get('window');
 
 const TeacherDetailsScreen = ({ route, navigation }) => {
@@ -61,7 +64,7 @@ const TeacherDetailsScreen = ({ route, navigation }) => {
         </View>
     );
 
-    const baseUrl = Platform.OS === 'web' ? 'http://localhost:5000/' : 'http://10.54.31.32:5000/';
+    const baseUrl = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
     const profileImage = teacher?.profilePhoto 
         ? { uri: teacher.profilePhoto.startsWith('http') ? teacher.profilePhoto : `${baseUrl}${teacher.profilePhoto.replace(/\\/g, '/')}` }
         : { uri: `https://ui-avatars.com/api/?name=${teacher?.name}&size=250&background=4F46E5&color=fff` };

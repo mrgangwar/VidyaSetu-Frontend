@@ -10,6 +10,9 @@ import apiClient from '../api/client';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+// Get API base URL from environment variable
+const API_BASE = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
+
 const COLORS = {
     background: '#F8FAFC',
     primaryText: '#1F2937',
@@ -131,7 +134,6 @@ const TeacherProfileScreen = () => {
 
     // Helper to get image source
     const getImageSource = () => {
-        const API_BASE = Platform.OS === 'web' ? 'http://localhost:5000' : 'http://10.54.31.32:5000';
         if (image) return { uri: image };
         if (user?.profilePhoto) {
             // Check if it's already a full URL (Cloudinary) or a local path

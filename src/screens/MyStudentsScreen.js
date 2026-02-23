@@ -7,6 +7,9 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import apiClient from '../api/client';
 
+// Get API base URL from environment variable
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
+
 // --- GLOBAL DESIGN SYSTEM ---
 const COLORS = {
     background: '#F8FAFC',
@@ -104,7 +107,7 @@ export default function MyStudentsScreen({ navigation }) {
                     <View style={styles.avatarContainer}>
                         <Image
                             source={item.profilePhoto
-                                ? { uri: item.profilePhoto.startsWith('http') ? item.profilePhoto : `http://10.54.31.32:5000/${item.profilePhoto.replace(/\\/g, '/').replace(/^\//, '')}` }
+                                ? { uri: item.profilePhoto.startsWith('http') ? item.profilePhoto : `https://vidyasetu-backend-n7ob.onrender.com/${item.profilePhoto.replace(/\\/g, '/').replace(/^\//, '')}` }
                                 : { uri: `https://ui-avatars.com/api/?name=${item.name}&background=2563EB&color=fff` }}
                             style={styles.avatar}
                             onLoadEnd={() => setImgLoading(false)}

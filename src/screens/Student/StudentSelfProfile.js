@@ -8,6 +8,9 @@ import { AuthContext } from '../../context/AuthContext';
 import apiClient from '../../api/client';
 import { useFocusEffect } from '@react-navigation/native';
 
+// Get API base URL from environment variable
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
+
 // GLOBAL DESIGN SYSTEM CONSTANTS
 const COLORS = {
     background: '#F8FAFC',
@@ -94,7 +97,7 @@ const StudentSelfProfile = () => {
                         <Image
                             key={profile?.profilePhoto}
                             source={profile?.profilePhoto
-                                ? { uri: profile.profilePhoto.startsWith('http') ? profile.profilePhoto : `http://10.54.31.32:5000/${profile.profilePhoto.replace(/\\/g, '/').replace(/^\//, '')}` }
+                                ? { uri: profile.profilePhoto.startsWith('http') ? profile.profilePhoto : `https://vidyasetu-backend-n7ob.onrender.com/${profile.profilePhoto.replace(/\\/g, '/').replace(/^\//, '')}` }
                                 : require('../../assets/default-avatar.png')}
                             style={styles.avatar}
                         />

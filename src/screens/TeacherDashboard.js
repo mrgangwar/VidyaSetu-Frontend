@@ -9,7 +9,10 @@ import { useFocusEffect } from '@react-navigation/native';
 import { AuthContext } from '../context/AuthContext';
 import apiClient from '../api/client'; 
 import { registerForPushNotificationsAsync } from '../utils/notificationHelper';
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons';
+
+// Get API base URL from environment variable
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com'; 
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -36,7 +39,6 @@ const TeacherDashboard = ({ navigation }) => {
 
     const blinkAnim = useRef(new Animated.Value(0.4)).current;
     const fadeAnim = useRef(new Animated.Value(0)).current;
-    const baseUrl = Platform.OS === 'web' ? 'http://localhost:5000/' : 'http://10.54.31.32:5000/';
 
     const fetchDashboardData = async () => {
         try {
@@ -112,7 +114,7 @@ const TeacherDashboard = ({ navigation }) => {
     }, []);
 
     const profilePicSource = user?.profilePhoto 
-        ? { uri: user.profilePhoto.startsWith('http') ? user.profilePhoto : `${baseUrl}${user.profilePhoto.replace(/\\/g, '/')}` }
+        ? { uri: user.profilePhoto.startsWith('http') ? user.profilePhoto : `${API_BASE_URL}/${user.profilePhoto.replace(/\\/g, '/')}` }
         : { uri: `https://ui-avatars.com/api/?name=${user?.name}&background=2563EB&color=fff` };
 
     return (

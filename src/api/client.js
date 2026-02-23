@@ -1,8 +1,8 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Use environment variable for API URL, fallback to localhost for development
-const baseURL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:5000/api';
+// Use environment variable for API URL, fallback to production URL for development
+const baseURL = process.env.EXPO_PUBLIC_API_URL || 'https://vidyasetu-backend-n7ob.onrender.com/api';
 
 const apiClient = axios.create({
     baseURL: baseURL,

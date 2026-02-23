@@ -9,6 +9,9 @@ import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import apiClient from '../../api/client';
 
+// Get API base URL from environment variable
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
+
 const AdminProfileScreen = ({ navigation }) => {
     const { user, setUser } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
@@ -83,7 +86,7 @@ const AdminProfileScreen = ({ navigation }) => {
     };
 
     // Corrected Image rendering logic
-    const baseUrl = Platform.OS === 'web' ? 'http://localhost:5000/' : 'http://10.54.31.32:5000/';
+    const baseUrl = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
     const currentProfilePic = user?.profilePhoto 
         ? { uri: user.profilePhoto.startsWith('http') ? user.profilePhoto : `${baseUrl}${user.profilePhoto.replace(/\\/g, '/')}` }
         : { uri: `https://ui-avatars.com/api/?name=${user?.name}&background=4F46E5&color=fff` };

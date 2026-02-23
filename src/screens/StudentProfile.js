@@ -9,6 +9,9 @@ import { Ionicons } from '@expo/vector-icons';
 import apiClient from '../api/client'; 
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+// Get API base URL from environment variable
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL ? process.env.EXPO_PUBLIC_API_URL.replace('/api', '') : 'https://vidyasetu-backend-n7ob.onrender.com';
+
 // --- GLOBAL DESIGN SYSTEM ---
 const COLORS = {
     background: '#F8FAFC',
@@ -180,7 +183,7 @@ const StudentProfile = ({ route, navigation }) => {
                                 source={form.profilePhoto
                                     ? { uri: form.profilePhoto.startsWith('http') || form.profilePhoto.startsWith('file://') || form.profilePhoto.startsWith('content://')
                                         ? form.profilePhoto
-                                        : `http://10.54.31.32:5000/${form.profilePhoto.replace(/\\/g, '/').replace(/^\//, '')}` }
+                                        : `https://vidyasetu-backend-n7ob.onrender.com/${form.profilePhoto.replace(/\\/g, '/').replace(/^\//, '')}` }
                                     : { uri: `https://ui-avatars.com/api/?name=${form.name}&background=2563EB&color=fff` }}
                                 style={styles.avatar}
                             />
