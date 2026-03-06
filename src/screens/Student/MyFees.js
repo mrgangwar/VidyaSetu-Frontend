@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import apiClient from '../../api/client';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
 
@@ -26,6 +26,7 @@ const MyFees = () => {
     const [feesData, setFeesData] = useState({ history: [], stats: {} });
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
+    const navigation = useNavigation();
 
     const fetchFeeRecords = async () => {
         try {
@@ -137,8 +138,13 @@ const MyFees = () => {
 
             <View style={styles.historyHeader}>
                 <Text style={styles.sectionTitle}>Transaction History</Text>
-                <TouchableOpacity activeOpacity={0.6}>
-                    <Ionicons name="options-outline" size={20} color={COLORS.primary} />
+                <TouchableOpacity 
+                    activeOpacity={0.6}
+                    style={styles.payOnlineBtn}
+                    onPress={() => navigation.navigate('PayFees')}
+                >
+                    <Ionicons name="card" size={16} color={COLORS.primary} />
+                    <Text style={styles.payOnlineText}>Pay Online</Text>
                 </TouchableOpacity>
             </View>
 
@@ -209,6 +215,8 @@ const styles = StyleSheet.create({
 
     historyHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 24, marginBottom: 15, marginTop: 5 },
     sectionTitle: { fontSize: 18, fontWeight: '800', color: COLORS.charcoal, letterSpacing: -0.5 },
+    payOnlineBtn: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#EFF6FF', paddingHorizontal: 12, paddingVertical: 8, borderRadius: 12, borderWidth: 1, borderColor: COLORS.primary },
+    payOnlineText: { fontSize: 13, fontWeight: '700', color: COLORS.primary, marginLeft: 6 },
 
     listContent: { paddingHorizontal: 20, paddingBottom: 40 },
     feeCard: { 

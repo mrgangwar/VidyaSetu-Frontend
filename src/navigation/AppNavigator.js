@@ -32,6 +32,9 @@ import GiveHomeworkScreen from '../screens/Teacher/GiveHomeworkScreen';
 import HomeworkHistoryScreen from '../screens/Teacher/HomeworkHistoryScreen';
 // ✅ ADDED: Screen for global broadcasts from Admin
 import TeacherBroadcastScreen from '../screens/Teacher/TeacherBroadcastScreen'; 
+// ✅ ADDED: Screen for student fee status
+import StudentFeeStatusScreen from '../screens/StudentFeeStatusScreen';
+import ManageStudentFeesScreen from '../screens/Teacher/ManageStudentFeesScreen'; 
 
 // --- ALIASING & PATHS ---
 import TeacherSideStudentProfile from '../screens/StudentProfile'; 
@@ -42,6 +45,7 @@ import StudentDashboard from '../screens/StudentDashboard';
 import MyAttendance from '../screens/Student/MyAttendance';
 import MyHomework from '../screens/Student/MyHomework';
 import MyFees from '../screens/Student/MyFees';
+import PayFeesScreen from '../screens/Student/PayFeesScreen';
 import MyTeachers from '../screens/Student/MyTeacher';
 import TeacherDetails from '../screens/Student/TeacherDetails';
 import AllNotices from '../screens/Student/AllNotices';
@@ -101,6 +105,8 @@ export default function AppNavigator() {
                             <Stack.Screen name="AttendanceHistory" component={AttendanceHistory} />
                             <Stack.Screen name="CollectFee" component={CollectFeeScreen} />
                             <Stack.Screen name="FeesDashboard" component={FeesDashboard} />
+                            <Stack.Screen name="StudentFeeStatus" component={StudentFeeStatusScreen} />
+                            <Stack.Screen name="ManageStudentFees" component={ManageStudentFeesScreen} />
                             <Stack.Screen name="ManageNotices" component={ManageNotices} />
                             <Stack.Screen name="ContactDeveloper" component={ContactDeveloperScreen} />
                             <Stack.Screen name="GiveHomework" component={GiveHomeworkScreen} />
@@ -126,6 +132,7 @@ export default function AppNavigator() {
                             <Stack.Screen name="MyAttendance" component={MyAttendance} options={{ headerShown: true, title: 'My Attendance' }} />
                             <Stack.Screen name="MyHomework" component={MyHomework} options={{ headerShown: true, title: 'My Homework' }} />
                             <Stack.Screen name="MyFees" component={MyFees} options={{ headerShown: true, title: 'My Fees' }} />
+                            <Stack.Screen name="PayFees" component={PayFeesScreen} options={{ headerShown: true, title: 'Pay Fees Online' }} />
                             <Stack.Screen name="MyTeachers" component={MyTeachers} options={{ headerShown: true, title: 'My Teachers' }} />
                             <Stack.Screen name="TeacherDetails" component={TeacherDetails} options={{ headerShown: true, title: 'Teacher Details' }} />
                             <Stack.Screen name="AllNotices" component={AllNotices} options={{ headerShown: true, title: 'Notices & Updates' }} />

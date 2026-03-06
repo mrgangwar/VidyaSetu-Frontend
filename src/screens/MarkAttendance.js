@@ -198,6 +198,30 @@ const MarkAttendance = () => {
                             >
                                 <Text style={[styles.statusLabel, attendance[item._id] === 'Absent' && styles.labelActive]}>A</Text>
                             </TouchableOpacity>
+
+                            <TouchableOpacity 
+                                activeOpacity={0.6}
+                                onPress={() => toggleStatus(item._id, 'Leave')}
+                                style={[
+                                    styles.statusToggle, 
+                                    styles.leaveToggle,
+                                    attendance[item._id] === 'Leave' ? styles.leaveActive : styles.inactiveBtn
+                                ]}
+                            >
+                                <Text style={[styles.statusLabel, attendance[item._id] === 'Leave' && styles.labelActive]}>L</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity 
+                                activeOpacity={0.6}
+                                onPress={() => toggleStatus(item._id, 'Holiday')}
+                                style={[
+                                    styles.statusToggle, 
+                                    styles.holidayToggle,
+                                    attendance[item._id] === 'Holiday' ? styles.holidayActive : styles.inactiveBtn
+                                ]}
+                            >
+                                <Text style={[styles.statusLabel, attendance[item._id] === 'Holiday' && styles.labelActive]}>H</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 )}
@@ -293,6 +317,10 @@ const styles = StyleSheet.create({
     statusToggle: { width: 44, height: 44, borderRadius: 15, justifyContent: 'center', alignItems: 'center', marginLeft: 10 },
     pActive: { backgroundColor: COLORS.success, elevation: 6, shadowColor: COLORS.success, shadowOpacity: 0.3 },
     aActive: { backgroundColor: COLORS.error, elevation: 6, shadowColor: COLORS.error, shadowOpacity: 0.3 },
+    leaveToggle: { marginLeft: 6 },
+    leaveActive: { backgroundColor: COLORS.warning, elevation: 6, shadowColor: COLORS.warning, shadowOpacity: 0.3 },
+    holidayToggle: { marginLeft: 6 },
+    holidayActive: { backgroundColor: COLORS.accent, elevation: 6, shadowColor: COLORS.accent, shadowOpacity: 0.3 },
     inactiveBtn: { backgroundColor: COLORS.background, borderWidth: 1.5, borderColor: COLORS.border },
     statusLabel: { color: COLORS.placeholder, fontWeight: '900', fontSize: 16 },
     labelActive: { color: '#FFFFFF' },

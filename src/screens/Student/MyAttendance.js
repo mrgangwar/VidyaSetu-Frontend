@@ -24,7 +24,9 @@ const MyAttendance = () => {
                 // Statistical calculation for dashboard metrics
                 const presentCount = res.data.history.filter(h => h.status === 'Present').length;
                 const absentCount = res.data.history.filter(h => h.status === 'Absent').length;
-                setStats({ present: presentCount, absent: absentCount });
+                const holidayCount = res.data.history.filter(h => h.status === 'Holiday').length;
+                const leaveCount = res.data.history.filter(h => h.status === 'Leave').length;
+                setStats({ present: presentCount, absent: absentCount, holiday: holidayCount, leave: leaveCount });
             }
         } catch (err) {
             console.log("Attendance Fetch Error:", err);
@@ -47,16 +49,39 @@ const MyAttendance = () => {
 
     const renderItem = ({ item }) => {
         const isPresent = item.status === 'Present';
+        const isAbsent = item.status === 'Absent';
+        const isHoliday = item.status === 'Holiday';
+        const isLeave = item.status === 'Leave';
         const dateObj = new Date(item.date);
+        
+        // Determine colors based on status
+        let statusColor, statusBg, statusIcon;
+        if (isPresent) {
+            statusColor = '#16A34A';
+            statusBg = '#F0FDF4';
+            statusIcon = 'checkmark-circle';
+        } else if (isHoliday) {
+            statusColor = '#2563EB';
+            statusBg = '#EFF6FF';
+            statusIcon = 'calendar';
+        } else if (isLeave) {
+            statusColor = '#D97706';
+            statusBg = '#FEF3C7';
+            statusIcon = 'calendar-outline';
+        } else {
+            statusColor = '#E11D48';
+            statusBg = '#FFF1F2';
+            statusIcon = 'close-circle';
+        }
         
         return (
             <View style={styles.row}>
                 <View style={styles.leftContent}>
-                    <View style={[styles.dateBox, { backgroundColor: isPresent ? '#F0FDF4' : '#FFF1F2' }]}>
-                        <Text style={[styles.dateDay, { color: isPresent ? '#16A34A' : '#E11D48' }]}>
+                    <View style={[styles.dateBox, { backgroundColor: statusBg }]}>
+                        <Text style={[styles.dateDay, { color: statusColor }]}>
                             {dateObj.getDate()}
                         </Text>
-                        <Text style={[styles.dateMonth, { color: isPresent ? '#16A34A' : '#E11D48' }]}>
+                        <Text style={[styles.dateMonth, { color: statusColor }]}>
                             {dateObj.toLocaleDateString('en-US', { month: 'short' })}
                         </Text>
                     </View>
@@ -66,13 +91,13 @@ const MyAttendance = () => {
                     </View>
                 </View>
 
-                <View style={[styles.statusBadge, { backgroundColor: isPresent ? '#DCFCE7' : '#FFE4E6' }]}>
+                <View style={[styles.statusBadge, { backgroundColor: statusBg }]}>
                     <Ionicons 
-                        name={isPresent ? "checkmark-circle" : "close-circle"} 
+                        name={statusIcon} 
                         size={16} 
-                        color={isPresent ? "#16A34A" : "#E11D48"} 
+                        color={statusColor} 
                     />
-                    <Text style={[styles.statusText, { color: isPresent ? "#16A34A" : "#E11D48" }]}>
+                    <Text style={[styles.statusText, { color: statusColor }]}>
                         {item.status}
                     </Text>
                 </View>
@@ -105,9 +130,13 @@ const MyAttendance = () => {
                         <Text style={styles.statValue}>{stats.absent}</Text>
                         <Text style={styles.statLabel}>Absent</Text>
                     </View>
-                    <View style={[styles.statCard, { borderLeftColor: '#6366F1' }]}>
-                        <Text style={styles.statValue}>{history.length}</Text>
-                        <Text style={styles.statLabel}>Sessions</Text>
+                    <View style={[styles.statCard, { borderLeftColor: '#2563EB' }]}>
+                        <Text style={styles.statValue}>{stats.holiday || 0}</Text>
+                        <Text style={styles.statLabel}>Holiday</Text>
+                    </View>
+                    <View style={[styles.statCard, { borderLeftColor: '#D97706' }]}>
+                        <Text style={styles.statValue}>{stats.leave || 0}</Text>
+                        <Text style={styles.statLabel}>Leave</Text>
                     </View>
                 </View>
             </View>

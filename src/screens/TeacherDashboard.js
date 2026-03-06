@@ -222,10 +222,12 @@ const TeacherDashboard = ({ navigation }) => {
                 <View style={styles.menuGrid}>
                     <MenuIconButton title="Add Student" icon="person-add-outline" color="#4F46E5" onPress={() => navigation.navigate('AddStudent')} />
                     <MenuIconButton title="Mark Attnd." icon="calendar-outline" color="#F59E0B" onPress={() => navigation.navigate('MarkAttendance')} />
-                    <MenuIconButton title="History" icon="time-outline" color="#8B5CF6" onPress={() => navigation.navigate('AttendanceHistory')} />
+                    <MenuIconButton title="Attendance History" icon="time-outline" color="#8B5CF6" onPress={() => navigation.navigate('AttendanceHistory')} />
                     <MenuIconButton title="Homework" icon="book-outline" color="#EC4899" onPress={() => navigation.navigate('GiveHomework')} />
                     <MenuIconButton title="My Students" icon="people-outline" color="#06B6D4" onPress={() => navigation.navigate('MyStudents')} />
                     <MenuIconButton title="Fees" icon="cash-outline" color="#10B981" onPress={() => navigation.navigate('CollectFee')} />
+                    <MenuIconButton title="Fee Status" icon="people-circle-outline" color="#8B5CF6" onPress={() => navigation.navigate('StudentFeeStatus')} />
+                    <MenuIconButton title="Manage Fees" icon="settings-outline" color="#F97316" onPress={() => navigation.navigate('ManageStudentFees')} />
                     <MenuIconButton title="Analytics" icon="bar-chart-outline" color="#3B82F6" onPress={() => navigation.navigate('FeesDashboard')} />
                     <MenuIconButton title="Broadcast" icon="megaphone-outline" color="#F43F5E" onPress={() => navigation.navigate('TeacherBroadcast')} />
                     

@@ -82,6 +82,7 @@ const AttendanceHistory = () => {
             case 'Absent': return { bg: '#FEF2F2', text: COLORS.error, icon: 'close-circle' };
             case 'Late': return { bg: '#FFFBEB', text: COLORS.warning, icon: 'time' };
             case 'Holiday': return { bg: '#EFF6FF', text: COLORS.accent, icon: 'calendar' };
+            case 'Leave': return { bg: '#FEF3C7', text: '#D97706', icon: 'calendar-outline' };
             default: return { bg: COLORS.background, text: COLORS.secondaryText, icon: 'help-circle' };
         }
     };
